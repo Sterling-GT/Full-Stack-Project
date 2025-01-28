@@ -1,0 +1,54 @@
+<mat-card>
+    <mat-card-header layout="row">
+      <mat-card-title style="padding-bottom: 5vw; font-size: large; font-weight: bold">
+        <span>{{ msg }}</span>
+      </mat-card-title>
+    </mat-card-header>
+  
+    <mat-card-content *ngIf="showDetails">
+      <app-product-detail [product]="productInDetail" [vendors]="vendors" [products]="dataSource.data"
+        (cancelled)="cancel()" (saved)="save($event)" (deleted)="delete($event)">
+      </app-product-detail>
+    </mat-card-content>
+  
+    <mat-card-content *ngIf="!showDetails">
+      <table mat-table  [dataSource]="dataSource" (matSortChange)="sortProductsWithObjectLiterals($event)"
+        products-table class="mat-elevation-z8" matSort
+        matSortActive="vendorid" matSortDirection="asc" matSortDisableClear >
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            <div class="center-header">ID</div>
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+        </ng-container>
+        <!-- Date Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            <div class="center-header">Name</div>
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.name }}
+          </td>
+        </ng-container>
+        <!-- Vendor Id Column  -->
+        <ng-container matColumnDef="vendorid">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            <div class="center-header">Vendor</div>
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.vendorid }}</td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let product columns: displayedColumns" (click)="select(product)"></tr>
+      </table>
+    </mat-card-content>
+
+    <mat-paginator #paginator *ngIf="!showDetails" style="margin-top:2vh"[pageSize]="pageSize">
+    </mat-paginator>
+  </mat-card>
+  
+  <div class="padtop15" *ngIf="!showDetails">
+    <mat-icon (click)="startNewProduct()" matTooltip="Add New Product" class="addicon" color="primary">
+      control_point
+    </mat-icon>
+  </div>
+  

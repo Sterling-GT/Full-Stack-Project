@@ -1,0 +1,164 @@
+<form [formGroup]="productForm" (ngSubmit)="updateSelectedProduct()">
+    <div style="text-align: center;">
+        <img src = "logo.png" height="100" width="100">
+    </div>
+<mat-accordion>
+    <mat-expansion-panel expanded>
+    <mat-expansion-panel-header class="my-primary-text">
+    <mat-panel-title> Product Information </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div layout="row" *ngIf="!product.id; else displayidro">
+    <mat-form-field flex>
+    <input
+    matInput
+    placeholder="Product Id"
+    type="text"
+    formControlName="id"
+    />
+    <mat-error align="end">
+    <span *ngIf="id.hasError('required')">id is required</span>
+    <span *ngIf="!id.hasError('required') && id.hasError('idExists')"
+    >Id already exists</span
+    >
+    </mat-error>
+    </mat-form-field>
+    </div>
+    <ng-template #displayidro>
+    <mat-form-field flex style="font-weight: bolder" color="accent">
+    <input
+    matInput
+    [readonly]="true"
+    placeholder="Product ID"
+    formControlName="id"
+    />
+    </mat-form-field>
+    <br />
+    </ng-template>
+    <div layout="row">
+        <mat-form-field style="width: 100%">
+          <mat-label>Choose a Vendor</mat-label>
+          <mat-select placeholder="Vendor" formControlName="vendorid" value="vendorid" id="vendorid">
+            <mat-option [value]="" disabled selected>Vendor</mat-option>
+            <mat-option *ngFor="let vendor of vendors" [value]="vendor.id">
+              {{ vendor.name }}
+            </mat-option>
+          </mat-select>
+          <mat-error flex *ngIf="vendorid.errors && (vendorid.dirty || vendorid.touched)" align="end">
+            <span align="end" mat-pad-xs *ngIf="vendorid.hasError('required')">Choose Vendor</span>
+          </mat-error>
+        </mat-form-field>
+      </div><!--End of Choose Vendor-->
+      <div layout="row">
+        <mat-form-field flex style="width: 100%">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Name" type="text" formControlName="name"/>
+          <mat-error *ngIf="name.errors && (name.dirty || name.touched)" align="end">
+            Name is required
+          </mat-error>
+        </mat-form-field>
+      </div>    
+      <div layout="row">
+        <mat-form-field flex style="width: 100%">
+          <mat-label>Cost</mat-label>
+          <input matInput placeholder="Cost" type="text" formControlName="costprice"/>
+          <mat-error *ngIf="costprice.errors && (costprice.dirty || costprice.touched)" align="end">
+            Cost is required
+          </mat-error>
+        </mat-form-field>
+      </div> 
+      <div layout="row">
+        <mat-form-field flex style="width: 100%">
+          <mat-label>MSRP</mat-label>
+          <input matInput placeholder="Msrp" type="text" formControlName="msrp"/>
+          <mat-error *ngIf="msrp.errors && (msrp.dirty || msrp.touched)" align="end">
+            Msrp is required
+          </mat-error>
+        </mat-form-field>
+      </div> 
+</mat-expansion-panel><!--End Panel 1-->
+<mat-expansion-panel>
+    <mat-expansion-panel-header class="my-primary-text">
+    <mat-panel-title>
+    Inventory Information
+    </mat-panel-title>
+    </mat-expansion-panel-header>
+      <!-- Place inventory stuff in here -->
+      <div layout="row">
+        <mat-form-field flex style="width: 100%">
+          <mat-label>Rop</mat-label>
+          <input matInput placeholder="Rop" type="text" formControlName="rop"/>
+          <mat-error *ngIf="rop.errors && (rop.dirty || rop.touched)" align="end">
+            <!-- Rop is required -->
+             <span *ngIf="rop.hasError('required')">R.o.p is required</span>
+             <span *ngIf="!rop.hasError('required') && rop.hasError('invalidNum')">Needs to be a number</span>
+          </mat-error>
+        </mat-form-field>
+      </div> 
+      <div layout="row">
+        <mat-form-field flex style="width: 100%">
+          <mat-label>Eoq</mat-label>
+          <input matInput placeholder="Eoq" type="text" formControlName="eoq"/>
+          <mat-error *ngIf="eoq.errors && (eoq.dirty || eoq.touched)" align="end">
+            <span *ngIf="eoq.hasError('required')">E.o.q is required</span>
+             <span *ngIf="!eoq.hasError('required') && eoq.hasError('invalidNum')">Needs to be a number</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div layout="row">
+        <mat-form-field flex style="width: 100%">
+          <mat-label>Qoh</mat-label>
+          <input matInput placeholder="Qoh" type="text" formControlName="qoh"/>
+          <mat-error *ngIf="qoh.errors && (qoh.dirty || qoh.touched)" align="end">
+            <span *ngIf="qoh.hasError('required')">Q.o.h is required</span>
+             <span *ngIf="!qoh.hasError('required') && qoh.hasError('invalidNum')">Needs to be a number</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div layout="row">
+        <mat-form-field flex style="width: 100%">
+          <mat-label>Qoo</mat-label>
+          <input matInput placeholder="Qoo" type="text" formControlName="qoo"/>
+          <mat-error *ngIf="qoo.errors && (qoo.dirty || qoo.touched)" align="end">
+            <span *ngIf="qoo.hasError('required')">Q.o.o is required</span>
+             <span *ngIf="!qoo.hasError('required') && qoo.hasError('invalidNum')">Needs to be a number</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+</mat-expansion-panel>
+
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>QR Code Information</mat-panel-title>
+  </mat-expansion-panel-header>
+  <div layout = "row" align="center">
+   <mat-form-field flex style = "width: 100%">
+    <input matInput placeholder="QR Code Information" type = 'text' formControlName="qrcodetxt"/>
+    <mat-error align = "end">
+
+    </mat-error>
+  </mat-form-field>
+  <img *ngIf="product.qrcode && product.qrcode.length > 0" style="display:block;" 
+  [src]="'data:image/png;base64,' + product.qrcode"/>
+  </div>
+  
+</mat-expansion-panel>
+</mat-accordion>
+<br>
+<br>
+<br>
+<div class="mat-pad-sm">
+    <span>
+      <button mat-raised-button [disabled]="!productForm.valid" type="button" (click)="updateSelectedProduct()">
+        Save
+      </button>
+    </span>
+    <span>
+      <button *ngIf="product.id" mat-raised-button type="button" (click)="openDeleteDialog()">Delete</button>
+    </span>
+    <span>
+      <button mat-raised-button type="button" (click)="cancelled.emit(product)">
+        Cancel
+      </button>
+    </span>
+  </div>
+</form>

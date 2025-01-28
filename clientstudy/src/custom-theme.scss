@@ -1,0 +1,16 @@
+@use '@angular/material' as mat;
+@include mat.core();
+/* ======== Angular material custom themes ======== */
+/* colour names and values from */
+/* https://material.io/design/color/the-color-system.html#color-theme-creation */
+$my-primary: mat.m2-define-palette(mat.$m2-purple-palette, 900);
+$my-accent: mat.m2-define-palette(mat.$m2-green-palette, 300, 200, 400);
+$my-theme: mat.m2-define-light-theme((
+color: (
+primary: $my-primary,
+accent: $my-accent,
+),
+typography: mat.m2-define-typography-config(),
+density: 0,
+));
+@include mat.all-component-themes($my-theme);

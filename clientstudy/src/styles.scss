@@ -1,0 +1,76 @@
+@use '@angular/material' as mat;
+@import "./custom-theme.scss";
+.my-primary-text {
+color: mat.m2-get-color-from-palette($my-primary);
+}
+.my-accent-text {
+color: mat.m2-get-color-from-palette($my-accent);
+}
+.margin-right-2 {
+margin-right: 2vw !important;
+}
+.margin-top-5 {
+margin-top: 5vh !important;
+}
+mat-list-item:nth-child(odd){
+ background-color:white;
+ }
+mat-list-item:nth-child(even) {
+background-color:#eeeeee;
+}
+
+.padtop15 {
+padding-top: 15vh;
+}
+.material-icons.addicon {
+font-size: 15vw;
+position: absolute;
+bottom: 5vh;
+right: 5vw;
+padding: 10vw;
+}
+
+mat-error {
+text-align: right;
+}
+
+.mat-mdc-row:nth-child(odd){
+    background-color:#eeeeee;
+    text-align: center;
+  }
+  
+  .mat-mdc-row.ng-star-inserted:nth-child(even) {
+    background-color: white;
+    text-align: center;
+  }
+  
+  .material-icons.addicon{
+    font-size: 60px;
+    position: absolute;
+    bottom: 15vh;
+    right: 10vw;
+  }
+  @media (min-width: 401px){
+    .material-icons.addicon{
+      right:5vw;
+    }
+  }
+
+
+  .customdialog .mat-mdc-dialog-title.mat-mdc-dialog-title {
+    color: mat.m2-get-color-from-palette($my-primary);
+  }
+  .customdialog .mat-mdc-dialog-content.mat-mdc-dialog-content {
+    color: mat.m2-get-color-from-palette($my-primary);
+  }
+  #deleteNo, #deleteYes {
+    background-color: mat.m2-get-color-from-palette($my-primary);
+    color: white;
+    font-size: x-large;
+    padding: 1vh;
+    margin: 1vw;
+  }
+  #deleteCancel {
+    background-color: white; border: none; padding-top: 2vh; padding-left:5vw;
+  }
+  

@@ -1,0 +1,92 @@
+<mat-card>    
+    <mat-card-header layout="row">
+      <div style="text-align: center;">
+        <img src = "logo.png" height="100" width="100">
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+        <div layout="row" style="margin-top: 3vh">
+            <mat-form-field flex style="width: 100%">
+              <mat-label>Vendor</mat-label>
+              <mat-select placeholder="Choose Vendor">
+                <mat-option *ngFor="let vendor of vendors" [value]="vendor" (onSelectionChange)="onVendorPicked($event)">
+                  {{ vendor.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field flex style="width: 100%" *ngIf="selectedVendor.id > 0">
+                
+              <mat-label>Vendor Purchase Orders</mat-label>
+              <mat-select placeholder="Choose Purchase Order">
+                <mat-option *ngFor="let po of vendorPos" [value]="po" (onSelectionChange)="onPoPicked($event)">
+                  {{ po.id }} - {{po.podate| date:"short"}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div> 
+
+          <div *ngIf="poProducts().length > 0" class="row">
+            <table>
+              <tr>
+                <th colspan="3" class="pad-xs text-center md-subhead my-primary-text" style="font-weight: bold; padding: 2vh">
+                  Purchase Order: {{ selectedPo.id }} 
+                  <br>
+                  <br>
+                  Created At {{selectedPo.podate | date:"short"}}
+                </th>
+              </tr>
+              <tr style="font-weight: bold; background-color: #eeeeee">
+                <td style=" text-align: center;width: 20vw;padding-top: 2vh;padding-bottom: 2vh;">
+                  Name
+                </td>
+                <td style="text-align: center;width: 60vw;padding-top: 2vh;padding-bottom: 2vh;">
+                  Qty
+                </td>
+                <td style="text-align: center;width: 20vw;padding-top: 2vh;padding-bottom: 2vh;">
+                  Cost
+                </td>
+                <td style="text-align: center;width: 20vw;padding-top: 2vh;padding-bottom: 2vh;">
+                  Extended
+                </td>
+              </tr>
+              <tr *ngFor="let item of poProducts()">
+                <td class="text-left" style="padding-top: 1vh; padding-bottom: 1vh">
+                  {{item.name}}
+                </td>
+                <td width="700" style="padding-top: 1vh; padding-bottom: 1vh; text-align: center">
+                  {{getPOItem(item.id)?.qty}}
+                </td>
+                <td style="padding-top: 1vh; padding-bottom: 1vh; text-align: right">
+                  {{ item.costprice| currency : "USD" : "symbol" : "1.2-2" }}
+                </td>
+                <td style="padding-top: 1vh; padding-bottom: 1vh; text-align: right">
+                  {{ poItem.price * poItem.qty| currency : "USD" : "symbol" : "1.2-2" }}
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3" style="text-align: right">Subtotal:</td>
+                <td class="my-accent-text" style="font-weight: 600; text-align: right">
+                  {{ subtotal() | currency : "USD" : "symbol" : "1.2-2" }}
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3" style="text-align: right">Tax:</td>
+                <td class="my-accent-text" style="font-weight: 600; text-align: right">
+                  {{ tax() | currency : "USD" : "symbol" : "1.2-2" }}
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3" style="text-align: right">Total:</td>
+                <td class="my-accent-text" style="font-weight: 600; text-align: right">
+                  {{ total() | currency : "USD" : "symbol" : "1.2-2" }}
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div style="text-align:center;" *ngIf="selectedPo.id > 0">
+            <button mat-raised-button type="submit" (click)="viewPdf()">View PDF</button>
+         </div>
+
+         <span class="my-primary-text">{{ msg }}</span>
+    </mat-card-content>
+</mat-card>
