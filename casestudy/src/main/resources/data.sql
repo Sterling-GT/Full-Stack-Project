@@ -1,0 +1,15 @@
+INSERT INTO Vendor (Address1,City,Province,PostalCode,Phone,Type,Name,Email)VALUES ('123 Maple St','London','On', 'N1N-1N1','(555)555-5555','Trusted','ABC Supply Co.','abc@supply.com');
+INSERT INTO Vendor (Address1,City,Province,PostalCode,Phone,Type,Name,Email) VALUES ('543 Sycamore Ave','Toronto','On', 'N1P-1N1','(999)555-5555','Trusted','Big Bills Depot','bb@depot.com');
+INSERT INTO Vendor (Address1,City,Province,PostalCode,Phone,Type,Name,Email) VALUES ('922 Oak St','London','On', 'N1N-1N1','(555)555-5599','Untrusted','Shady Sams','ss@underthetable.com');
+INSERT INTO Vendor (Address1,City,Province,PostalCode,Phone,Type,Name,Email) VALUES ('1400 Sterling St','Brantford','On', 'N3R-9G9','(519)755-5599','Trusted','Sterling Gault','sg@gmail.com');
+INSERT INTO Product(Id,VendorId,Name,CostPrice,Msrp,Rop,Eoq,Qoh,Qoo,QrCode,QrCodetxt) VALUES('20XX',2,'Tree',12.99,15.99,5,5,4,6,Null,Null);
+INSERT INTO Product(Id,VendorId,Name,CostPrice,Msrp,Rop,Eoq,Qoh,Qoo,QrCode,QrCodetxt) VALUES('20XV',2,'Maple Syrup',4.99,15.99,5,5,4,6,Null,Null);
+INSERT INTO Product(Id,VendorId,Name,CostPrice,Msrp,Rop,Eoq,Qoh,Qoo,QrCode,QrCodetxt) VALUES('20XI',2,'Doo Hickey',6.99,15.99,5,5,4,6,Null,Null);
+INSERT INTO Product(Id,VendorId,Name,CostPrice,Msrp,Rop,Eoq,Qoh,Qoo,QrCode,QrCodetxt) VALUES('20XS',2,'Snow Globe',9.99,15.99,5,5,4,6,Null,Null);
+INSERT INTO Product(Id,VendorId,Name,CostPrice,Msrp,Rop,Eoq,Qoh,Qoo,QrCode,QrCodetxt) VALUES('20XZ',2,'Ugly Cat Photo',12.99,15.99,5,5,4,6,Null,Null);
+INSERT INTO Product(Id,VendorId,Name,CostPrice,Msrp,Rop,Eoq,Qoh,Qoo,QrCode,QrCodetxt) VALUES('20XA',4,'Paper 1',12.99,11.99,5,5,4,6,Null,Null);
+INSERT INTO Product(Id,VendorId,Name,CostPrice,Msrp,Rop,Eoq,Qoh,Qoo,QrCode,QrCodetxt) VALUES('20XB',4,'Paper 2',4.99,12.99,5,5,4,6,Null,Null);
+INSERT INTO Product(Id,VendorId,Name,CostPrice,Msrp,Rop,Eoq,Qoh,Qoo,QrCode,QrCodetxt) VALUES('20XC',4,'Paper 3',6.99,13.99,5,5,4,6,Null,Null);
+INSERT INTO Product(Id,VendorId,Name,CostPrice,Msrp,Rop,Eoq,Qoh,Qoo,QrCode,QrCodetxt) VALUES('20XD',4,'Paper 4',9.99,15.99,5,5,4,6,Null,Null);
+INSERT INTO Product(Id,VendorId,Name,CostPrice,Msrp,Rop,Eoq,Qoh,Qoo,QrCode,QrCodetxt) VALUES('20XE',4,'Sterling Gault Paper',12.99,15.99,5,5,4,6,Null,Null);
+INSERT INTO Product(Id,VendorId,Name,CostPrice,Msrp,Rop,Eoq,Qoh,Qoo,QrCode,QrCodetxt) VALUES('20XF',4,'Paper 5',10.99,12.99,5,5,4,6,Null,Null);
